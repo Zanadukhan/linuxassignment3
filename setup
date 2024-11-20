@@ -1,0 +1,40 @@
+#!/bin/bash
+
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
+
+# install necessary packages
+pacman -Syu --noconfirm
+pacman -S --noconfirm nginx
+pacman -S --noconfirm ufw
+
+
+# Create webgen system user
+useradd -m -d /var/lib/webgen -r -s webgen
+
+# Create bin and HTML folders
+mkdir /var/lib/webgen/{bin,HTML}
+
+# Move generate_index into bin folder
+mv ./generate_index /var/lib/webgen/bin
+
+
+# Move unit files into /etc/systemd/system
+mv -r ./unit-files/generate-index.{service,timer} /etc/systemd/system
+
+# Start/enable unit files
+systemctl start generate-index.service
+systemctl start generate-index.timer
+
+systemctl enable generate-index.service
+systemctl enable generate-index.timer
+
+# move preconfigured nginx files into webgen's nginx
+mv -r 
+
+
+
+
+
