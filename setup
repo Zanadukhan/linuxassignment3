@@ -32,9 +32,20 @@ systemctl enable generate-index.service
 systemctl enable generate-index.timer
 
 # move preconfigured nginx files into webgen's nginx
-mv -r 
+mv -r ./nginx /etc/nginx 
+
+# Allow SSH (limit) and HTTP connections through firewall
+ufw allow ssh
+ufw limit ssh
+ufw allow http
+
+# Enable firewall
+sudo ufw enable
+sudo systemctl enable --now ufw.service
 
 
+
+Index.html is now being served
 
 
 
