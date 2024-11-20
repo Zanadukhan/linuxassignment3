@@ -12,7 +12,7 @@ pacman -S --noconfirm ufw
 
 
 # Create webgen system user
-useradd -m -d /var/lib/webgen -r -s webgen
+useradd -m -d /var/lib/webgen -r -s /bin/sh webgen
 
 # Create bin and HTML folders
 mkdir /var/lib/webgen/{bin,HTML}
@@ -22,7 +22,7 @@ mv ./generate_index /var/lib/webgen/bin
 
 
 # Move unit files into /etc/systemd/system
-mv -r ./unit-files/generate-index.{service,timer} /etc/systemd/system
+mv ./unit-files/generate-index.{service,timer} /etc/systemd/system
 
 # Start/enable unit files
 systemctl start generate-index.service
