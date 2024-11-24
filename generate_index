@@ -12,9 +12,6 @@ DATE=$(date +"%d/%m/%Y")
 PACKAGE_COUNT=$(pacman -Q | wc -l)
 OUTPUT_DIR="/var/lib/webgen/HTML"
 OUTPUT_FILE="$OUTPUT_DIR/index.html"
-CURRENT_PROCESSES=$(ps aux)
-FIREWALL_SETTINGS=$(sudo ufw status)
-RUNNING_SERVICES=$(systemctl list-units --type=service --state=running)
 
 # Ensure the target directory exists
 if [[ ! -d "$OUTPUT_DIR" ]]; then
@@ -37,9 +34,6 @@ cat <<EOF > "$OUTPUT_FILE"
     <p><strong>Operating System:</strong> $OS_NAME</p>
     <p><strong>Date:</strong> $DATE</p>
     <p><strong>Number of Installed Packages:</strong> $PACKAGE_COUNT</p>
-    <p><strong>Current processes:</strong>$CURRENT_PROCESSES</p>
-    <p><strong>UFW configuration:</strong>$FIREWALL_SETTING</p>
-    <p><strong>Running Service Files:</strong>$RUNNING_SERVICES</p>
 </body>
 </html>
 EOF

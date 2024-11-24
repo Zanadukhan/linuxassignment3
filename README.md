@@ -28,7 +28,7 @@ sudo bash setup <your-ip-address-here>
 
 Once the script has been executed, paste your ip into the address bar of your browser and you will see this page
 
-![livepage](./images/livesite.png)
+![livepage](./images/livesite.jpg)
 
 
 
